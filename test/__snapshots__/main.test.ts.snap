@@ -280,7 +280,10 @@ Object {
             "PolicyDocument": Object {
               "Statement": Array [
                 Object {
-                  "Action": "polly:SynthesizeSpeech",
+                  "Action": Array [
+                    "polly:SynthesizeSpeech",
+                    "comprehend:DetectSentiment",
+                  ],
                   "Effect": "Allow",
                   "Resource": "*",
                 },

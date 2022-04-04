@@ -81,7 +81,7 @@ export class Lex extends Stack {
           statements: [
             new iam.PolicyStatement({
               resources: ['*'],
-              actions: ['polly:SynthesizeSpeech'],
+              actions: ['polly:SynthesizeSpeech', 'comprehend:DetectSentiment'],
             }),
           ],
         }),
