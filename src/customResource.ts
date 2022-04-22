@@ -15,7 +15,7 @@ export interface LexImportCustomResourceProps extends ResourceProps {
 
 export class LexImportCustomResource extends Construct {
   public readonly lambda: lambda.IFunction;
-  public readonly lexImportCustomResource: CustomResource;
+  public readonly lexImport: CustomResource;
 
   constructor(
     scope: Construct,
@@ -31,14 +31,10 @@ export class LexImportCustomResource extends Construct {
       onEventHandler: this.lambda,
     });
 
-    this.lexImportCustomResource = new CustomResource(
-      this,
-      'LexImportCustomResource',
-      {
-        serviceToken: LexImportProvider.serviceToken,
-        properties: { ...props },
-      },
-    );
+    this.lexImport = new CustomResource(this, 'LexImportCustomResource', {
+      serviceToken: LexImportProvider.serviceToken,
+      properties: { ...props },
+    });
   }
 
   private ensureLambda(): lambda.Function {

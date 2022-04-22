@@ -31,8 +31,7 @@ export class Bot extends Construct {
       lexZipBucket: upload.lexZipBucket,
     });
 
-    this.botId = lexBotImport.lexImportCustomResource.getAttString('bot_id');
-    this.botAliasId =
-      lexBotImport.lexImportCustomResource.getAttString('bot_alias_id');
+    this.botId = lexBotImport.lexImport.getAttString('bot_id');
+    this.botAliasId = lexBotImport.lexImport.getAttString('bot_alias_id');
   }
 }

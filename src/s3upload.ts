@@ -3,8 +3,8 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import { Construct } from 'constructs';
 
-interface S3UploadProps extends ResourceProps {
-  sourceDirectory: string;
+export interface S3UploadProps extends ResourceProps {
+  readonly sourceDirectory: string;
 }
 
 export class S3Upload extends Construct {
