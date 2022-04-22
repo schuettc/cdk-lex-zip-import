@@ -590,5 +590,38 @@ public readonly sourceDirectory: string;
 
 ---
 
+## Classes <a name="Classes" id="Classes"></a>
+
+### Hello <a name="Hello" id="@schuettc/cdk-lex-zip-import.Hello"></a>
+
+#### Initializers <a name="Initializers" id="@schuettc/cdk-lex-zip-import.Hello.Initializer"></a>
+
+```typescript
+import { Hello } from '@schuettc/cdk-lex-zip-import'
+
+new Hello()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@schuettc/cdk-lex-zip-import.Hello.sayHello">sayHello</a></code> | *No description.* |
+
+---
+
+##### `sayHello` <a name="sayHello" id="@schuettc/cdk-lex-zip-import.Hello.sayHello"></a>
+
+```typescript
+public sayHello(): string
+```
+
+
+
 
 
