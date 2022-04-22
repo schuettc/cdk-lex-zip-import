@@ -1,5 +1,3 @@
-export class Hello {
-  public sayHello() {
-    return 'hello, world!';
-  }
-}
+export * from './customResource';
+export * from './lexbot';
+export * from './s3upload';
