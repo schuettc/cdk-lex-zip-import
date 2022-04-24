@@ -1,5 +1,6 @@
 {
   "name": "cdk-lex-zip-import",
+  "description": "cdk construct for importing a zipped Lex bot",
   "repository": {
     "type": "git",
     "url": "https://github.com/schuettc/cdk-lex-zip-import.git"
@@ -64,7 +65,10 @@
     "constructs": "^10.0.5"
   },
   "keywords": [
-    "cdk"
+    "bot",
+    "cdk",
+    "import",
+    "lex"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
