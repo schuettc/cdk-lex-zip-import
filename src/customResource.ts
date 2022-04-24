@@ -10,7 +10,11 @@ import { Construct } from 'constructs';
 
 export interface LexImportCustomResourceProps extends ResourceProps {
   readonly uid: string;
-  readonly lexZipBucket: s3.Bucket;
+  readonly lexZipBucket?: s3.Bucket;
+  readonly lexRoleArn?: string;
+  readonly function: string;
+  readonly resourceArn?: string;
+  readonly policy?: string;
 }
 
 export class LexImportCustomResource extends Construct {
@@ -25,15 +29,26 @@ export class LexImportCustomResource extends Construct {
     super(scope, id);
     this.lambda = this.ensureLambda();
 
-    props.lexZipBucket.grantRead(this.lambda);
+    if (props.lexZipBucket) {
+      props.lexZipBucket.grantRead(this.lambda);
+    }
 
     const LexImportProvider = new cr.Provider(this, 'LexImportProvider', {
       onEventHandler: this.lambda,
     });
 
+    const lexProps = {
+      uid: props.uid,
+      lexZipBucket: props.lexZipBucket?.bucketName,
+      lexRoleArn: props.lexRoleArn,
+      function: props.function,
+      resourceArn: props.resourceArn,
+      policy: props.policy,
+    };
+
     this.lexImport = new CustomResource(this, 'LexImportCustomResource', {
       serviceToken: LexImportProvider.serviceToken,
-      properties: { ...props },
+      properties: lexProps,
     });
   }
 

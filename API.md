@@ -43,6 +43,7 @@ new Bot(scope: Construct, id: string, props: LexBotProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@schuettc/cdk-lex-zip-import.Bot.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@schuettc/cdk-lex-zip-import.Bot.addResourcePolicy">addResourcePolicy</a></code> | *No description.* |
 
 ---
 
@@ -53,6 +54,24 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `addResourcePolicy` <a name="addResourcePolicy" id="@schuettc/cdk-lex-zip-import.Bot.addResourcePolicy"></a>
+
+```typescript
+public addResourcePolicy(resourceArn: string, policy: string): LexImportCustomResource
+```
+
+###### `resourceArn`<sup>Required</sup> <a name="resourceArn" id="@schuettc/cdk-lex-zip-import.Bot.addResourcePolicy.parameter.resourceArn"></a>
+
+- *Type:* string
+
+---
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@schuettc/cdk-lex-zip-import.Bot.addResourcePolicy.parameter.policy"></a>
+
+- *Type:* string
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -372,7 +391,18 @@ const lexBotProps: LexBotProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexBotProps.property.lexRoleArn">lexRoleArn</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@schuettc/cdk-lex-zip-import.LexBotProps.property.sourceDirectory">sourceDirectory</a></code> | <code>string</code> | Zip File location (required). |
+
+---
+
+##### `lexRoleArn`<sup>Required</sup> <a name="lexRoleArn" id="@schuettc/cdk-lex-zip-import.LexBotProps.property.lexRoleArn"></a>
+
+```typescript
+public readonly lexRoleArn: string;
+```
+
+- *Type:* string
 
 ---
 
@@ -407,8 +437,12 @@ const lexImportCustomResourceProps: LexImportCustomResourceProps = { ... }
 | <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.environmentFromArn">environmentFromArn</a></code> | <code>string</code> | ARN to deduce region and account from. |
 | <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.physicalName">physicalName</a></code> | <code>string</code> | The value passed in by users to the physical name prop of the resource. |
 | <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.region">region</a></code> | <code>string</code> | The AWS region this resource belongs to. |
-| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexZipBucket">lexZipBucket</a></code> | <code>aws-cdk-lib.aws_s3.Bucket</code> | *No description.* |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.function">function</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.uid">uid</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexRoleArn">lexRoleArn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexZipBucket">lexZipBucket</a></code> | <code>aws-cdk-lib.aws_s3.Bucket</code> | *No description.* |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.policy">policy</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.resourceArn">resourceArn</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -475,7 +509,37 @@ The AWS region this resource belongs to.
 
 ---
 
-##### `lexZipBucket`<sup>Required</sup> <a name="lexZipBucket" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexZipBucket"></a>
+##### `function`<sup>Required</sup> <a name="function" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.function"></a>
+
+```typescript
+public readonly function: string;
+```
+
+- *Type:* string
+
+---
+
+##### `uid`<sup>Required</sup> <a name="uid" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.uid"></a>
+
+```typescript
+public readonly uid: string;
+```
+
+- *Type:* string
+
+---
+
+##### `lexRoleArn`<sup>Optional</sup> <a name="lexRoleArn" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexRoleArn"></a>
+
+```typescript
+public readonly lexRoleArn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `lexZipBucket`<sup>Optional</sup> <a name="lexZipBucket" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.lexZipBucket"></a>
 
 ```typescript
 public readonly lexZipBucket: Bucket;
@@ -485,10 +549,20 @@ public readonly lexZipBucket: Bucket;
 
 ---
 
-##### `uid`<sup>Required</sup> <a name="uid" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.uid"></a>
+##### `policy`<sup>Optional</sup> <a name="policy" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.policy"></a>
 
 ```typescript
-public readonly uid: string;
+public readonly policy: string;
+```
+
+- *Type:* string
+
+---
+
+##### `resourceArn`<sup>Optional</sup> <a name="resourceArn" id="@schuettc/cdk-lex-zip-import.LexImportCustomResourceProps.property.resourceArn"></a>
+
+```typescript
+public readonly resourceArn: string;
 ```
 
 - *Type:* string

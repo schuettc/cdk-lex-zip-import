@@ -11,6 +11,7 @@ export interface LexBotProps {
    *    @default - None
    */
   readonly sourceDirectory: string;
+  readonly lexRoleArn: string;
 }
 
 export class Bot extends Construct {
@@ -29,9 +30,29 @@ export class Bot extends Construct {
     const lexBotImport = new LexImportCustomResource(this, 'LexBotImport', {
       uid: uid,
       lexZipBucket: upload.lexZipBucket,
+      lexRoleArn: props.lexRoleArn,
+      function: 'importBot',
     });
+
+    // new LexImportCustomResource(this, 'LexBotImport', {
+    //   uid: uid,
+    //   lexZipBucket: upload.lexZipBucket.bucketName,
+    // });
 
     this.botId = lexBotImport.lexImport.getAttString('bot_id');
     this.botAliasId = lexBotImport.lexImport.getAttString('bot_alias_id');
+  }
+  addResourcePolicy(resourceArn: string, policy: string) {
+    const result = new LexImportCustomResource(
+      this,
+      'resourcePolicyAssociation',
+      {
+        resourceArn,
+        policy,
+        uid: cdk.Names.uniqueId(this),
+        function: 'addResourcePolicy',
+      },
+    );
+    return result;
   }
 }
