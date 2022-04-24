@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { LexImportCustomResource } from './customResource';
 import { S3Upload } from './s3upload';
 /**
- * Props for `LexBotImport`.
+ * Props for `ImportBot`.
  */
 export interface LexBotProps {
   /**
@@ -11,10 +11,14 @@ export interface LexBotProps {
    *    @default - None
    */
   readonly sourceDirectory: string;
+  /**
+   * ARN for IAM Role associated with Lex Bot (required)
+   *    @default - None
+   */
   readonly lexRoleArn: string;
 }
 
-export class Bot extends Construct {
+export class ImportBot extends Construct {
   public readonly botId: string;
   public readonly botAliasId: string;
 
@@ -34,15 +38,10 @@ export class Bot extends Construct {
       function: 'importBot',
     });
 
-    // new LexImportCustomResource(this, 'LexBotImport', {
-    //   uid: uid,
-    //   lexZipBucket: upload.lexZipBucket.bucketName,
-    // });
-
     this.botId = lexBotImport.lexImport.getAttString('bot_id');
     this.botAliasId = lexBotImport.lexImport.getAttString('bot_alias_id');
   }
-  addResourcePolicy(resourceArn: string, policy: string) {
+  addResourcePolicy(resourceArn: string, policy: object) {
     const result = new LexImportCustomResource(
       this,
       'resourcePolicyAssociation',

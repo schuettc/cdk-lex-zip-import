@@ -14,9 +14,13 @@ export interface LexImportCustomResourceProps extends ResourceProps {
   readonly lexRoleArn?: string;
   readonly function: string;
   readonly resourceArn?: string;
-  readonly policy?: string;
+  readonly policy?: object;
 }
-
+/**
+ * Adds "action" functionality to the Policy Statement
+ *
+ * @private
+ */
 export class LexImportCustomResource extends Construct {
   public readonly lambda: lambda.IFunction;
   public readonly lexImport: CustomResource;
@@ -43,7 +47,7 @@ export class LexImportCustomResource extends Construct {
       lexRoleArn: props.lexRoleArn,
       function: props.function,
       resourceArn: props.resourceArn,
-      policy: props.policy,
+      policy: JSON.stringify(props.policy),
     };
 
     this.lexImport = new CustomResource(this, 'LexImportCustomResource', {

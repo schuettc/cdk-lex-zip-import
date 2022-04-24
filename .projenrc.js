@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'schuettc@amazon.com',
   cdkVersion: '2.20.0',
   defaultReleaseBranch: 'main',
-  name: '@schuettc/cdk-lex-zip-import',
+  name: 'cdk-lex-zip-import',
   repositoryUrl: 'https://github.com/schuettc/cdk-lex-zip-import.git',
   eslintOptions: {
     ignorePatterns: ['example/**'],
@@ -18,6 +18,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['schuettc'],
+  },
+  python: {
+    distName: 'cdk-lex-zip-import',
+    module: 'cdk_lex_zip_import',
   },
   autoApproveUpgrades: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
