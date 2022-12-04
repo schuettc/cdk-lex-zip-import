@@ -13,7 +13,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   },
   autoApproveUpgrades: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
-  cdkVersion: '2.19.0',
+  cdkVersion: '2.53.0',
   license: 'MIT-0',
   copyrightOwner: 'Court Schuett',
   defaultReleaseBranch: 'main',
