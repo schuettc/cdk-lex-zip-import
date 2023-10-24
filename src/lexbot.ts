@@ -38,6 +38,8 @@ export class ImportBot extends Construct {
       function: 'importBot',
     });
 
+    lexBotImport.node.addDependency(upload);
+
     this.botId = lexBotImport.lexImport.getAttString('bot_id');
     this.botAliasId = lexBotImport.lexImport.getAttString('bot_alias_id');
   }

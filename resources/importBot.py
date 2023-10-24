@@ -15,6 +15,7 @@ try:
         log_level = "INFO"
 except:
     log_level = "INFO"
+
 logger.setLevel(log_level)
 
 lex = boto3.client("lexv2-models")
@@ -22,6 +23,7 @@ s3 = boto3.client("s3")
 
 
 def download_zip(bucket_name):
+    logger.info("Downloading LexBot.zip file from %s", bucket_name)
     try:
         s3.download_file(bucket_name, "LexBot.zip", "/tmp/LexBot.zip")
     except Exception as e:
@@ -55,12 +57,15 @@ def get_bot_id(bot_name):
         filtered_bot = list(filter(lambda x: (x["botName"] == bot_name), bot_info["botSummaries"]))
         time.sleep(5)
     bot_id = filtered_bot[0]["botId"]
-    logger.info(f"bot_id: {bot_id}")
+    logger.info("bot_id: %s", bot_id)
     return bot_id
 
 
 def get_bot_alias_id(bot_id):
-    bot_alias_id = lex.list_bot_aliases(botId=bot_id, maxResults=1,)["botAliasSummaries"][
+    bot_alias_id = lex.list_bot_aliases(
+        botId=bot_id,
+        maxResults=1,
+    )["botAliasSummaries"][
         0
     ]["botAliasId"]
     logger.info(bot_alias_id)
@@ -100,9 +105,7 @@ def upload_bot(upload_info):
         print(error)
         raise Exception(error)
     try:
-        upload = http.request(
-            "PUT", upload_info["uploadUrl"], body=file_data, headers={"Content-Type": "application/zip"}
-        )
+        upload = http.request("PUT", upload_info["uploadUrl"], body=file_data, headers={"Content-Type": "application/zip"})
 
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
