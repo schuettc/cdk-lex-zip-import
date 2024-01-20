@@ -103,6 +103,7 @@ export class LexImportCustomResource extends Construct {
                 'lex:DeleteSlotType',
                 'lex:UpdateIntent',
                 'lex:DeleteResourcePolicy',
+                'lex:DescribeImport',
                 'iam:PassRole',
               ],
             }),
